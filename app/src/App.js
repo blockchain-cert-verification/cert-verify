@@ -33,6 +33,9 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
       <NavBar/>
+        This is our 6th Sem project.
+        Certificate verification using Blockchain
+      
       </ThemeProvider>
     </div>
   );
