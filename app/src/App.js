@@ -1,6 +1,12 @@
 import { createMuiTheme, ThemeProvider, makeStyles} from '@material-ui/core/styles';
-import NavBar from './components/navBar'
+import NavBar from './components/navBar';
+import Sidebar from './components/sidenav';
 import './App.css';
+import React from 'react';
+import { Home } from './Home';
+import { Issue } from './Issue';
+import { View } from './View';
+import { BrowserRouter as Router, Route, Link, withRouter, Switch } from "react-router-dom";
 
 
 const theme = createMuiTheme({
@@ -30,11 +36,17 @@ const theme = createMuiTheme({
 
 function App() {
   return (
-    <div className="App">
-      <ThemeProvider theme={theme}>
-      <NavBar/>
-      </ThemeProvider>
-    </div>
+    <React.Fragment>
+      <Router>
+        <NavBar/>
+        <Sidebar/>
+        <Switch>
+          <Route exact path="/" component={Home}/>
+          <Route path="/issue" component={Issue}/>
+          <Route component={View}/>
+        </Switch>
+      </Router>
+    </React.Fragment>
   );
 }
 

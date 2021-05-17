@@ -5,7 +5,7 @@ import {makeStyles} from '@material-ui/core/styles';
 
 const styles = makeStyles({
     bar:{
-        paddingTop: "1rem",
+        paddingTop: "0.025rem",
         backgroundColor: "#f2bfc4",
         // eslint-disable-next-line
         ['@media (max-width:780px)']: { 
@@ -37,15 +37,6 @@ function NavBar() {
             <img src={certificate} className={classes.certificate} />
             <b>CERT-VERIFY</b>
             <IconButton></IconButton>
-            <Typography variants="h6" className={classes.menuItem}>
-                Home
-            </Typography>
-            <Typography variants="h6" className={classes.menuItem}>
-                Issue
-            </Typography>
-            <Typography variants="h6" className={classes.menuItem}>
-                View 
-            </Typography>
         </Toolbar>
     )
 }
