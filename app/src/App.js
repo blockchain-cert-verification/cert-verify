@@ -4,7 +4,7 @@ import Sidebar from './components/sidenav';
 import './App.css';
 import React from 'react';
 import { Home } from './Home';
-import { Issue } from './Issue';
+import Issue  from './Issue';
 import { View } from './View';
 import { BrowserRouter as Router, Route, Link, withRouter, Switch } from "react-router-dom";
 
@@ -42,7 +42,7 @@ function App() {
         <Sidebar/>
         <Switch>
           <Route exact path="/" component={Home}/>
-          <Route path="/issue" component={Issue}/>
+          <Route path="/Issue" component={Issue}/>
           <Route component={View}/>
         </Switch>
       </Router>
