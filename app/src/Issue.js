@@ -1,13 +1,11 @@
-import React, { Component } from 'react'
-import './todo.css';
-
+import React from "react";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import SubmitAnimation from "./SubmitAnimation";
+//import SubmitAnimation from "./SubmitAnimation";
 import { IssueCertificate } from "./apiConnect";
 
 const styles = theme => ({
@@ -35,6 +33,8 @@ const styles = theme => ({
     minHeight: "75vh",
     maxWidth: "95%",
     margin: theme.spacing.unit * 5,
+    marginTop: "100px",
+    marginLeft: "100px",
     display: "flex",
     flexDirection: "column",
     padding: `${theme.spacing.unit * 4}px ${theme.spacing.unit * 8}px ${theme
@@ -51,6 +51,7 @@ const styles = theme => ({
     maxWidth: "60%",
     minWidth: "60%",
     margin: theme.spacing.unit * 5,
+    marginTop: "100px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -73,7 +74,14 @@ const styles = theme => ({
     }
   },
   submitBtn: {
-    marginLeft: "50px"
+    marginLeft: "250px",
+    marginTop: "20px",
+    width: "100px",
+    height:"50px",
+    Text:{
+      textField: "Submit"
+    },
+    color: "#c22126"
   }
 });
 
@@ -251,13 +259,13 @@ class Issue extends React.Component {
                 />
               </Grid>
               <Grid item xs={12} sm={12}>
-                {/* <input type="submit"
-                name="submit"></input> */}
-                <SubmitAnimation
+                <input type="submit"
+                name="submit" className={classes.submitBtn}></input>
+                {/* <SubmitAnimation
                   helperText="Submit"
                   currentState={currentState}
                   className={classes.submitBtn}
-                />
+                /> */}
                 {currentState === "validate" && (
                   <Typography
                     variant="caption"
