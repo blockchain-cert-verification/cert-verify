@@ -1,6 +1,6 @@
 import React from 'react'
 import certificate from '../certificate.svg'
-import {AppBar, IconButton, Toolbar, Typography} from '@material-ui/core'
+import {AppBar, IconButton, Toolbar} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles';
 
 
@@ -37,7 +37,7 @@ function NavBar() {
     return (
         <AppBar position="fixed">
         <Toolbar position="Sticky" color="rbga(0,0,0,0.87)" className={classes.bar}>
-            <img src={certificate} className={classes.certificate} />
+            <img src={certificate} alt="cert-icon" className={classes.certificate} />
             <b>CERT-VERIFY</b>
             <IconButton></IconButton>
         </Toolbar>

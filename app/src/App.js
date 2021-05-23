@@ -1,38 +1,38 @@
-import { createMuiTheme, ThemeProvider, makeStyles} from '@material-ui/core/styles';
+// import { createMuiTheme} from '@material-ui/core/styles';
 import NavBar from './components/navBar';
 import Sidebar from './components/sidenav';
 import './App.css';
 import React from 'react';
-import { Home } from './Home';
-import Issue  from './Issue';
-import { View } from './View';
-import { BrowserRouter as Router, Route, Link, withRouter, Switch } from "react-router-dom";
+import { Home } from './components/Home';
+import Issue  from './components/Issue';
+import View from './components/View';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main:"#2e1667",
-    },
-    secondary: {
-      main:"#c7d8ed",
-    },
-  },
-  typography: {
-    fontFamily: [
-      'Roboto'
-    ],
-    h4: {
-      fontWeight: 600,
-      fontSize: 28,
-      lineHeight: '2rem',
-      },
-    h5: {
-      fontWeight: 100,
-      lineHeight: '2rem',
-    },
-  },
-});
+// const theme = createMuiTheme({
+//   palette: {
+//     primary: {
+//       main:"#2e1667",
+//     },
+//     secondary: {
+//       main:"#c7d8ed",
+//     },
+//   },
+//   typography: {
+//     fontFamily: [
+//       'Roboto'
+//     ],
+//     h4: {
+//       fontWeight: 600,
+//       fontSize: 28,
+//       lineHeight: '2rem',
+//       },
+//     h5: {
+//       fontWeight: 100,
+//       lineHeight: '2rem',
+//     },
+//   },
+// });
 
 function App() {
   return (
@@ -43,7 +43,10 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route path="/Issue" component={Issue}/>
-          <Route component={View}/>
+          <Route 
+            path="/view"> 
+            <View />
+            </Route>
         </Switch>
       </Router>
     </React.Fragment>
