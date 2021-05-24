@@ -1,6 +1,6 @@
 import React from 'react'
 import certificate from '../certificate.svg'
-import {IconButton, Toolbar, Typography} from '@material-ui/core'
+import {AppBar, IconButton, Toolbar, Typography} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles';
 
 const styles = makeStyles({
@@ -33,11 +33,14 @@ const styles = makeStyles({
 function NavBar() {
     const classes = styles()
     return (
-        <Toolbar position="sticky" color="rbga(0,0,0,0.87)" className={classes.bar}>
-            <img src={certificate} className={classes.certificate} />
-            <b>CERT-VERIFY</b>
-            <IconButton></IconButton>
-        </Toolbar>
+        <AppBar position="fixed">
+            <Toolbar position="sticky" color="rbga(0,0,0,0.87)" className={classes.bar}>
+                <img src={certificate} className={classes.certificate} />
+                <b>CERT-VERIFY</b>
+                <IconButton></IconButton>
+            </Toolbar>
+        </AppBar>
+        
     )
 }
 

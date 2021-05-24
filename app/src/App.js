@@ -3,9 +3,9 @@ import NavBar from './components/navBar';
 import Sidebar from './components/sidenav';
 import './App.css';
 import React from 'react';
-import { Home } from './Home';
-import { Issue } from './Issue';
-import { View } from './View';
+import {Home} from './components/Home';
+import Issue from './components/Issue';
+import View from './components/View';
 import { BrowserRouter as Router, Route, Link, withRouter, Switch } from "react-router-dom";
 
 
@@ -43,7 +43,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route path="/issue" component={Issue}/>
-          <Route component={View}/>
+          <Route path="/view" component={View}/>
         </Switch>
       </Router>
     </React.Fragment>
