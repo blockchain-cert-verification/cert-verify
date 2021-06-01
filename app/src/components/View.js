@@ -1,15 +1,30 @@
 import React,{useEffect, useState} from 'react';
 import styled from 'styled-components';
+import verifycert from './verifycert';
 const Wrapper = styled.div`
   margin-top: 6em;
   margin-left: 7em;
-  margin-right: 6em;
+  margin right: 2em;
 `; 
 // export const View = () => (
 //   <Wrapper>
 //     <h2>View Page</h2>
 //   </Wrapper>
 // )
+// const thead = styled.div`
+//   border: 1px solid #dddddd;
+//   text-align: left;
+//   padding: 8px;
+// `;
+// const t = styled.div`
+//   font-family: arial, sans-serif;
+//   border-collapse: collapse;
+//   width: 100%;
+// `;
+// const trow = styled.div`
+//   background-color: #dddddd;
+// `;
+
 
 function View(){
   const [data, setData] = useState([{
@@ -22,25 +37,45 @@ function View(){
     assignedOn: '',
     _id :''
   }])
-
   useEffect(() => {
     fetch("/cert").then(res => {
       if(res.ok) {
         return res.json()
       }
-    }).then(jsonRes => setData(jsonRes));
-  })
+    }).then(data => setData(data));
+  });
+  const verify = (id) => {
+    console.log(id);
+  }; 
 
   return <Wrapper>
     <h1>View Data</h1>
-    {data.map( d => 
-        <div> 
-          <h1>Name : {d.firstname} {d.lastname}</h1>
-          <p>Certificate ID : {d._id}</p>
-          <p></p>
-
-        </div>
-      )}
+    <table style={
+      { border: '1px solid black',
+      borderSpacing: '2px'
+      }}>
+      <tr style={{background: '#D0D0D0', border: '1px solid black'}}>      
+         <th style={{border: '1px solid black'}}>Candidate Name </th>
+        <th style={{border: '1px solid black'}}>Course</th>
+        <th style={{border: '1px solid black'}}>Date of issue</th>
+        <th style={{border: '1px solid black'}}>Certificate ID</th>       
+      </tr>
+      {data.map( d => 
+          <tr style={{border: '1px solid black'}}>
+            <td style={{border: '1px solid black'}}>{d.firstname} {d.lastname}</td>
+            <td style={{border: '1px solid black'}}>{d.coursename}</td>
+            <td style={{border: '1px solid black'}}>{d.assignedOn}</td>
+            <td style={{border: '1px solid black'}}>{d._id}</td>
+            <td ><button style={{
+                            width: "100px",
+                            marginRight: "15px",
+                            marginLeft:"6px"
+                          }} onClick={() => {
+                            verify(d._id);
+                          }}>Verify</button></td>
+          </tr>       
+        )}
+       </table>
   </Wrapper>  
     
 

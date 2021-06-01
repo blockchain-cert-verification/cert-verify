@@ -6,6 +6,8 @@ import React from 'react';
 import {Home} from './components/Home';
 import Issue from './components/Issue';
 import View from './components/View';
+import Certificate from './components/certificate';
+import Display from './components/verifycert';
 import { BrowserRouter as Router, Route, Link, withRouter, Switch } from "react-router-dom";
 
 
@@ -44,6 +46,8 @@ function App() {
           <Route exact path="/" component={Home}/>
           <Route path="/issue" component={Issue}/>
           <Route path="/view" component={View}/>
+          <Route path="/cert" component={Certificate}/>
+          <Route path="/display" component={Display}/>
         </Switch>
       </Router>
     </React.Fragment>

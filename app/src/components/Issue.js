@@ -7,7 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
 //import SubmitAnimation from "./SubmitAnimation";
-//import { generateCertificate } from "../routes/formApi";
+import { generateCertificate } from "../Utils/apiConnect";
 
 const styles = theme => ({
   container: {
@@ -120,39 +120,38 @@ class Issue extends React.Component {
     axios.post('http://localhost:3001/create', newCert);
     console.log(this.state);
     alert("Data has been saved successfully !!");
+    if (this.state.currentState === "validate") {
+      return;
+    }
+    this.setState({ currentState: "load" });
+    const {
+      firstname,
+      lastname,
+      organization,
+      coursename,
+      assignedOn,
+      duration,
+      emailId
+    } = this.state;
+    let candidateName = `${firstname} ${lastname}`;
+    let assignDate = new Date(assignedOn).getTime();
+    generateCertificate(
+      candidateName,
+      coursename,
+      organization,
+      assignDate,
+      parseInt(duration),
+      emailId
+    )
+      .then(data => {
+        if (data.data !== undefined)
+          this.setState({
+            currentState: "validate",
+            certificateId: data.data.certificateId
+          });
+      })
+      .catch(err => console.log(err));
   };
-    // if (this.state.currentState === "validate") {
-    //   return;
-    // }
-    // this.setState({ currentState: "load" });
-    // const {
-    //   firstname,
-    //   lastname,
-    //   organization,
-    //   coursename,
-    //   assignedOn,
-    //   duration,
-    //   emailId
-    // } = this.state;
-    // let candidateName = `${firstname} ${lastname}`;
-    // let assignDate = new Date(assignedOn).getTime();
-    // generateCertificate(
-    //   candidateName,
-    //   coursename,
-    //   organization,
-    //   assignDate,
-    //   parseInt(duration),
-    //   emailId
-    // )
-    //   .then(data => {
-    //     if (data.data !== undefined)
-    //       this.setState({
-    //         currentState: "validate",
-    //         certificateId: data.data.certificateId
-    //       });
-    //   })
-    //   .catch(err => console.log(err));
-  
 
   render() {
     const { classes } = this.props;
@@ -286,7 +285,7 @@ class Issue extends React.Component {
                     color="inherit"
                     className={classes.submitBtn}
                   >
-                    Certificate genrated with id {certificateId}
+                    Certificate generated with id {certificateId}
                   </Typography>
                 )}
               </Grid>
