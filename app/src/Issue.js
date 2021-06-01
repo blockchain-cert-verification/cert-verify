@@ -5,8 +5,13 @@ import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
+<<<<<<< HEAD
 //import SubmitAnimation from "./SubmitAnimation";
 import { IssueCertificate } from "./apiConnect";
+=======
+// import SubmitAnimation from "./SubmitAnimation";
+// import { generateCertificate } from "../Utils/apiConnect";
+>>>>>>> main
 
 const styles = theme => ({
   container: {
@@ -33,8 +38,11 @@ const styles = theme => ({
     minHeight: "75vh",
     maxWidth: "95%",
     margin: theme.spacing.unit * 5,
+<<<<<<< HEAD
     marginTop: "100px",
     marginLeft: "100px",
+=======
+>>>>>>> main
     display: "flex",
     flexDirection: "column",
     padding: `${theme.spacing.unit * 4}px ${theme.spacing.unit * 8}px ${theme
@@ -51,11 +59,19 @@ const styles = theme => ({
     maxWidth: "60%",
     minWidth: "60%",
     margin: theme.spacing.unit * 5,
+<<<<<<< HEAD
     marginTop: "100px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`
+=======
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
+      .spacing.unit * 3}px`
+>>>>>>> main
   },
   verificationBox: {
     display: "flex",
@@ -74,6 +90,7 @@ const styles = theme => ({
     }
   },
   submitBtn: {
+<<<<<<< HEAD
     marginLeft: "250px",
     marginTop: "20px",
     width: "100px",
@@ -105,6 +122,31 @@ class Issue extends React.Component {
     });
   };
 
+=======
+    marginLeft: "50px"
+  }
+});
+
+class GenerateForm extends React.Component {
+  state = {
+    firstname: "",
+    lastname: "",
+    organization: "FossAsia",
+    orgLogo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/FOSSASIA_Logo.svg/600px-FOSSASIA_Logo.svg.png",
+    coursename: "",
+    assignedOn: null,
+    duration: 0,
+    currentState: "normal",
+    emailId: ""
+  };
+
+  handleChange = name => event => {
+    this.setState({
+      [name]: event.target.value
+    });
+  };
+
+>>>>>>> main
   submitData = event => {
     event.preventDefault();
     if (this.state.currentState === "validate") {
@@ -122,7 +164,11 @@ class Issue extends React.Component {
     } = this.state;
     let candidateName = `${firstname} ${lastname}`;
     let assignDate = new Date(assignedOn).getTime();
+<<<<<<< HEAD
     IssueCertificate(
+=======
+    generateCertificate(
+>>>>>>> main
       candidateName,
       coursename,
       organization,
@@ -259,6 +305,7 @@ class Issue extends React.Component {
                 />
               </Grid>
               <Grid item xs={12} sm={12}>
+<<<<<<< HEAD
                 <input type="submit"
                 name="submit" className={classes.submitBtn}></input>
                 {/* <SubmitAnimation
@@ -266,6 +313,12 @@ class Issue extends React.Component {
                   currentState={currentState}
                   className={classes.submitBtn}
                 /> */}
+=======
+                <SubmitAnimation
+                  currentState={currentState}
+                  className={classes.submitBtn}
+                />
+>>>>>>> main
                 {currentState === "validate" && (
                   <Typography
                     variant="caption"
@@ -296,9 +349,17 @@ class Issue extends React.Component {
   }
 }
 
+<<<<<<< HEAD
 Issue.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
 
 export default withStyles(styles)(Issue);
+=======
+GenerateForm.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(GenerateForm);
+>>>>>>> main
