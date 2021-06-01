@@ -1,6 +1,8 @@
 import React,{useEffect, useState} from 'react';
 import styled from 'styled-components';
-import verifycert from './verifycert';
+import { Redirect} from "react-router-dom";
+// import verifycert from './verifycert';
+import Display from './verifycert';
 const Wrapper = styled.div`
   margin-top: 6em;
   margin-left: 7em;
@@ -44,9 +46,15 @@ function View(){
       }
     }).then(data => setData(data));
   });
-  const verify = (id) => {
-    console.log(id);
-  }; 
+
+  
+  // const verify = (id) => {
+  //   console.log(id);
+  //   //return <Redirect  to="/display/${id}" />
+  //   // <Router>
+  //   //   <Route path="/display/${id}" component={Display}/>
+  //   // </Router>
+  // }; 
 
   return <Wrapper>
     <h1>View Data</h1>
@@ -66,13 +74,13 @@ function View(){
             <td style={{border: '1px solid black'}}>{d.coursename}</td>
             <td style={{border: '1px solid black'}}>{d.assignedOn}</td>
             <td style={{border: '1px solid black'}}>{d._id}</td>
-            <td ><button style={{
+            {/* <td ><button style={{
                             width: "100px",
                             marginRight: "15px",
                             marginLeft:"6px"
                           }} onClick={() => {
                             verify(d._id);
-                          }}>Verify</button></td>
+                          }}>Verify</button></td> */}
           </tr>       
         )}
        </table>
@@ -82,4 +90,3 @@ function View(){
 }
 
 export default View;
-

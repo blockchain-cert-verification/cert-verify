@@ -10,11 +10,12 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Tooltip from "@material-ui/core/Tooltip";
 import HelpIcon from "@material-ui/icons/Help";
 import LockIcon from "@material-ui/icons/Lock";
-import { getCertificate, verifyCertificate } from "../Utils/apiConnect";
+//import { getCertificate, verifyCertificate } from "../Utils/apiConnect";
 import Loader from "./Loader";
 import Certificate from "./certificate";
-//import VerificationBadge from '@bit/owner.collection.namespace.namespace.comp-id';
-//import VerificationBadge ;
+import axios from "axios";
+
+
 
 const styles = theme => ({
   root: {
@@ -73,38 +74,64 @@ class Display extends React.Component {
     loading: false,
     pageLoad: true,
     info: {
-      candidateName: "Shruti",
-      orgName: "IGDTUW",
-      courseName: "MCA",
+      candidateName: "",
+      orgName: "",
+      courseName: "",
       assignDate: null,
-      expirationDate: null
+      duration: null
     },
     logo:
       "https://upload.wikimedia.org/wikipedia/en/4/4e/Indira_Gandhi_Delhi_Technical_University_for_Women_logo.png"
-  };
+  }; 
 
   verification = () => {
       console.log("Verify");
       this.setState({ authorized: true, verified: true, loading: false });
-      //return <h1>This certificate is Blockchain Verified</h1>
   };
 
   componentDidMount() {
         console.log("Something");
-        const certificateId = this.props.match.params.id;
-        this.setState(prev => {
-            const temp = prev;
-            temp.certificateId = certificateId;
-            temp.pageLoad = false;
-            temp.info = {
-            candidateName : "Shruti",
-            orgName:"igdtuw",
-            courseName:"MCA",
-            assignDate: Date.now(),// new Date(assignDate).toString().slice(4, 15),
-            expirationDate: Date.now() //new Date(expirationDate).toString().slice(4, 15)
-            };
-            return temp;
-        });
+        const pathlength = this.props.location.pathname.length
+        const certificateId = this.props.location.pathname.substring(9,pathlength);
+        console.log(certificateId);
+        axios.get('http://localhost:3001/display/'+this.props.location.pathname.substring(9,pathlength))
+          .then(res => {
+            //this.setState({info: res.data});            
+            console.log(res.data);
+            if (res.ok){
+              return res.json()
+            }
+            this.setState(prev => {
+              const temp = prev;
+              temp.certificateId = certificateId;
+              temp.pageLoad = false;
+              temp.info = {
+              candidateName: res.data.firstname +" "+ res.data.lastname,
+              orgName: res.data.organization,
+              courseName : res.data.coursename,
+              assignDate: res.data.assignedOn.toString().substring(0,10),// new Date(assignDate).toString().slice(4, 15),
+              duration: res.data.duration  //new Date(expirationDate).toString().slice(4, 15)
+              };
+              return temp;
+          });
+          })
+          .catch(function(error){
+            console.log(error);
+          })
+
+      //   this.setState(prev => {
+      //     const temp = prev;
+      //     temp.certificateId = certificateId;
+      //     temp.pageLoad = false;
+      //     temp.info = {
+      //     candidateName: "Shruti misha",
+      //     orgName: "abc",
+      //     courseName : "xyz",
+      //     assignDate: Date.now(),// new Date(assignDate).toString().slice(4, 15),
+      //     expirationDate: Date.now() //new Date(expirationDate).toString().slice(4, 15)
+      //     };
+      //     return temp;
+      // });
   }
 
   render() {
@@ -122,7 +149,7 @@ class Display extends React.Component {
       orgName,
       courseName,
       assignDate,
-      expirationDate
+      duration
     } = this.state.info;
     const tooltipInfo = `This verifies whether the certification is secured and stored with correct information in the blockchain`;
     return (
@@ -161,7 +188,7 @@ class Display extends React.Component {
                   Assigned on: {assignDate}
                 </Typography>
                 <Typography variant="caption" color="inherit" noWrap>
-                  Expires on: {expirationDate}
+                  <br></br>Expires after: {duration} year(s)
                 </Typography>
               </div>
               <Grid container className={classes.verificationBox}>
@@ -212,7 +239,7 @@ class Display extends React.Component {
                           variant="subtitle1"
                           className={classes.textitems}
                         >
-                          This certificate is Blockchain Verified
+                          <b>This certificate is Blockchain Verified</b>
                         </Typography>
                       </div>
                     ) : (

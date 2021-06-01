@@ -38,4 +38,14 @@ router.route("/cert").get((req,res) => {
         .then(foundCert => res.json(foundCert))
 })
 
+router.route('/display/:id').get((req, res) => {
+    certverify.findById(req.params.id, (error, data) => {
+        if (error) {
+            console.log("cannot find data by this id")
+        } else {
+            res.json(data)
+        }
+    })
+})
+
 module.exports = router;

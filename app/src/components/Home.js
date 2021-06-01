@@ -8,6 +8,27 @@ const Wrapper = styled.div`
   `;
 export const Home = (props) => (
   <Wrapper>
-    <h2>This is a paragraph and I am writing on the home page</h2>
+     <div>
+       <h1>Block Verifier</h1>
+          <div class="panel__block"></div>
+          <centre>
+            <p style={{backgroundColor: "lightblue"}}>
+              A Blockchain based Certificate verification with Distributed storage. <br/>
+              The certificates will be immutable, confidential and tamperproof.<br/>
+              <br/><br/>
+              By combining 
+              <br/><br/>
+              BLOCKCHAIN + MongoDB + ENCRYPTION = BLOCK VERIFIER
+              <br/><br/>
+              Combining the multiple technologies and elimination ones draw back with other
+              <br/><br/>
+              BLOCKCHAIN - Tamperproof<br/><br/>
+              MongoDB       - Distributed Storage<br/><br/>
+              ENCRYPTION - confidentiality<br/><br/>
+            </p>
+            </centre>
+
+          
+    </div>   
   </Wrapper>
 )

@@ -48,6 +48,7 @@ function App() {
           <Route path="/view" component={View}/>
           <Route path="/cert" component={Certificate}/>
           <Route path="/display" component={Display}/>
+          <Route path="/display/${id}" component={Display}/>
         </Switch>
       </Router>
     </React.Fragment>

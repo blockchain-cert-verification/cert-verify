@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function Certificate(props) {
-  const { title = "Masters of Computer Application", name="Shruti Mishra", date = "22-09-2021", hash="08983v73687v873bmjsh86", logo="https://upload.wikimedia.org/wikipedia/en/4/4e/Indira_Gandhi_Delhi_Technical_University_for_Women_logo.png" } = props;
+  const { title , name, date , hash , logo="https://upload.wikimedia.org/wikipedia/en/4/4e/Indira_Gandhi_Delhi_Technical_University_for_Women_logo.png" } = props;
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
