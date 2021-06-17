@@ -1,19 +1,25 @@
 
+import { colors } from '@material-ui/core';
 import React from 'react';
 import styled from 'styled-components';
 const Wrapper = styled.div`
-  margin-top: 6em;
-  margin-left: 7em;
-  margin-right: 6em;
+  margin-top: 5em;
+  margin-left: 5em;
+  margin-right: 1em;
   `;
 export const Home = (props) => (
   <Wrapper>
-     <div>
+     <div style={{
+      backgroundImage: `url(${process.env.PUBLIC_URL+'/assests/bg.jpg'})`,
+      height: "700px", backgroundRepeat: "no-repeat",backgroundSize:"cover"
+    }}>
        <h1>Block Verifier</h1>
           <div class="panel__block"></div>
+          
           <centre>
-            <p style={{backgroundColor: "lightblue"}}>
-              A Blockchain based Certificate verification with Distributed storage. <br/>
+            <h2>
+             
+              A Blockchain based Certificate verification with Distributed storage. <br/><br/>
               The certificates will be immutable, confidential and tamperproof.<br/>
               <br/><br/>
               By combining 
@@ -25,7 +31,8 @@ export const Home = (props) => (
               BLOCKCHAIN - Tamperproof<br/><br/>
               MongoDB       - Distributed Storage<br/><br/>
               ENCRYPTION - confidentiality<br/><br/>
-            </p>
+      
+            </h2>
             </centre>
 
           
